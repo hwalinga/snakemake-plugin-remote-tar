@@ -11,7 +11,7 @@ setup(
     license=m.__license__,
     author=m.__author__,
     author_email=m.__email__,
-    py_modules=['tar'],
+    py_modules=['snakemake_plugin_remote_tar'],
     include_package_data=True,
     classifiers=[
         'Development Status :: 1 - Planning',

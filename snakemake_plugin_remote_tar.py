@@ -2,9 +2,12 @@ from snakemake.remote import AbstractRemoteProvider, AbstractRemoteObject
 import tarfile
 from functools import cached_property
 from pathlib import Path
+from contextlib import contextmanager
 
-from .meta import *
+from meta import *
 
+
+snakemake_submodule_name = 'tar'
 
 
 class RemoteProvider(AbstractRemoteProvider):
@@ -31,7 +34,7 @@ class RemoteObject(AbstractRemoteObject):
     def archive_file(self):
         # Find the tar file
         f = Path(self.local_file())
-        while not f.with_suffix('.tar').exist()
+        while not f.with_suffix('.tar').exist():
             f = f.parent
         return f.with_suffix('.tar')
 
@@ -75,7 +78,6 @@ class RemoteObject(AbstractRemoteObject):
     def _download(self):
         with self.open() as t, open(self.local_file(), 'rw') as f:
             f.write(t.extractfile(self.file_in_archive).read())
-
 
     def _upload(self):
         with self.open('w') as t, open(self.local_file(), 'rb') as f:
