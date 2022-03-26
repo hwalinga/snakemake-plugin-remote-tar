@@ -1,0 +1,4 @@
+__pycache__/
+build/
+dist/
+snakemake_plugin_remote_tar.egg-info/
